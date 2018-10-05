@@ -2,9 +2,9 @@ package br.felipewisniewski.pages;
 
 import org.openqa.selenium.By;
 
-import br.felipewisniewski.core.BasePage;
+import br.felipewisniewski.core.PageBase;
 
-public class LoginPage extends BasePage {
+public class PageLogin extends PageBase {
 	
 	public void setEmail(String email) {
 		writeText("email", email);

@@ -7,11 +7,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.Dimension;
 
-import br.felipewisniewski.pages.LoginPage;
+import br.felipewisniewski.pages.PageLogin;
 
-public class BaseTest {
+public class TestBase {
 	
-	private LoginPage login = new LoginPage();
+	private PageLogin login = new PageLogin();
 		
 	@Before
 	public void startTest() {
@@ -25,6 +25,8 @@ public class BaseTest {
 
 	@After
 	public void endsTest() {
-		killDriver();	
+		if(TestSettings.CLOSE_BROWSER) {
+			killDriver();
+		}			
 	}	
 }

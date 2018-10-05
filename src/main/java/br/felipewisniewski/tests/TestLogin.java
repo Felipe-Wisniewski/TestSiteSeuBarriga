@@ -8,9 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import br.felipewisniewski.core.BaseTest;
+import br.felipewisniewski.core.TestBase;
 
-public class TestLogin extends BaseTest {
+public class TestLogin extends TestBase {
 			
 	@Test
 	public void testLogin() {

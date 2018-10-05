@@ -2,25 +2,23 @@ package br.felipewisniewski.tests;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import br.felipewisniewski.core.BaseTest;
-import br.felipewisniewski.pages.AddAccountPage;
-import br.felipewisniewski.pages.MenuMainPage;
+import br.felipewisniewski.core.TestBase;
+import br.felipewisniewski.pages.PageAddAccount;
+import br.felipewisniewski.pages.PageMenu;
 
-public class TestAddAccount extends BaseTest {
+public class TestAddAccount extends TestBase {
 	
-	private MenuMainPage menu = new MenuMainPage();
-	private AddAccountPage add = new AddAccountPage();
+	private PageMenu menu = new PageMenu();
+	private PageAddAccount add = new PageAddAccount();
 	
 	@Test
 	public void testAddAccount() {
-		menu.clickAddAccount();
+		menu.openAddAccount();
+		
 		add.setNameNewAccount("Steve");
 		add.clickSaveNewAccount();
 		
-		Assert.assertEquals("Conta adicionada com sucesso!", 
-				add.getTextField(By.xpath("//div[@class='alert alert-success']")));
+		Assert.assertEquals("Conta adicionada com sucesso!", add.getAlertSuccess());
 	}
-
 }

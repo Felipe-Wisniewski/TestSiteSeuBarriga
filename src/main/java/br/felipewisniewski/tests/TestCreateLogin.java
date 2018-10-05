@@ -7,14 +7,13 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
-import br.felipewisniewski.pages.CreateLoginPage;
+import br.felipewisniewski.pages.PageCreateLogin;
 
 public class TestCreateLogin {
 
-	private CreateLoginPage newUser = new CreateLoginPage();
+	private PageCreateLogin newUser = new PageCreateLogin();
 	
 	@Before
 	public void startTest() {
@@ -34,6 +33,7 @@ public class TestCreateLogin {
 		newUser.setEmail("james_gosling@sum.com");
 		newUser.setPassword("1234");
 		newUser.clickRegisterButton();
-		Assert.assertEquals("Usuário inserido com sucesso", newUser.getTextField(By.xpath("//div[@class='alert alert-success']")));		
+		
+		Assert.assertEquals("Usuário inserido com sucesso", newUser.getConfirmAlert());		
 	}
 }

@@ -2,9 +2,9 @@ package br.felipewisniewski.pages;
 
 import org.openqa.selenium.By;
 
-import br.felipewisniewski.core.BasePage;
+import br.felipewisniewski.core.PageBase;
 
-public class CreateLoginPage extends BasePage {
+public class PageCreateLogin extends PageBase {
 	
 	public void clickNewUserButton() {
 		clickButton(By.xpath("//a[.='Novo usuário?']"));
@@ -24,5 +24,9 @@ public class CreateLoginPage extends BasePage {
 	
 	public void clickRegisterButton() {
 		clickButton(By.xpath("//input[@value='Cadastrar']"));
+	}
+	
+	public String getConfirmAlert() {
+		return getTextField(By.xpath("//div[@class='alert alert-success']"));
 	}
 }
