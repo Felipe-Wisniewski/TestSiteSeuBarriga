@@ -33,7 +33,7 @@ public class TestBase {
 	
 	@Before
 	public void startTest() {
-		report = new ExtentHtmlReporter("./target/extent-reports/testName.getMethodName()" + ".html");
+		report = new ExtentHtmlReporter("target/extent-reports/testName.getMethodName()" + ".html");
 		extent = new ExtentReports();
 		extent.attachReporter(report);
 		login.openLoginPage();
@@ -48,7 +48,7 @@ public class TestBase {
 		File file = ss.getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(file, new File("target" + File.separator + "screen-shots" +
 				File.separator + testName.getMethodName() + ".jpg"));
-		
+	
 		extent.flush();
 		
 		if(Settings.CLOSE_BROWSER) {

@@ -3,6 +3,9 @@ package br.felipewisniewski.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import br.felipewisniewski.core.TestBase;
 import br.felipewisniewski.core.Mass;
 import br.felipewisniewski.pages.PageCreateMovement;
@@ -15,6 +18,8 @@ public class TestCreateMovement extends TestBase {
 	
 	@Test
 	public void testCreateMovementRevenue() {
+		ExtentTest test = getExtent().createTest("testCreateMovementRevenue");
+		
 		menu.openCreateMovement();
 		
 		move.selectTypeMovement(Mass.movTypeRevenue);
@@ -28,10 +33,13 @@ public class TestCreateMovement extends TestBase {
 		move.saveButton();
 		
 		Assert.assertEquals("Movimentação adicionada com sucesso!", move.getAlertSuccess());
+		test.log(Status.PASS, "pass");
 	}
 	
 	@Test
 	public void testCreateMovementExpense() {
+		ExtentTest test = getExtent().createTest("testCreateMovementExpense");
+		
 		menu.openCreateMovement();
 		
 		move.selectTypeMovement(Mass.movTypeExpense);
@@ -45,5 +53,6 @@ public class TestCreateMovement extends TestBase {
 		move.saveButton();
 		
 		Assert.assertEquals("Movimentação adicionada com sucesso!", move.getAlertSuccess());
+		test.log(Status.PASS, "pass");
 	}
 }
