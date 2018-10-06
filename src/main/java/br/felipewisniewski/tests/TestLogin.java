@@ -1,27 +1,20 @@
 package br.felipewisniewski.tests;
 
-import static br.felipewisniewski.core.DriverFactory.getDriver;
-
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.felipewisniewski.core.TestBase;
+import br.felipewisniewski.pages.PageLogin;
 
 public class TestLogin extends TestBase {
 			
+	private PageLogin login = new PageLogin();
+	
 	@Test
 	public void testLogin() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='alert alert-success']")));
-		String[] text = getDriver().findElement(By.xpath("//div[@class='alert alert-success']")).getText().split(" ");
-		String msg = text[0] + " " + text[1];
-	
+		login.waitLoadHome();
+		String[] text = login.getConfirmAlert().split(" ");
+		String msg = text[0] + " " + text[1];	
 		Assert.assertEquals("Bem vindo,", msg);
 	}
-	
-	
-
 }

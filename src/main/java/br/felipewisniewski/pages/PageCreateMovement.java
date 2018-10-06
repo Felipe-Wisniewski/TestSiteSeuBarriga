@@ -39,6 +39,10 @@ public class PageCreateMovement extends PageBase {
 		if(situation.toUpperCase() == "PENDENTE") clickRadioButton("status_pendente");
 	}
 	
+	public void saveButton() {
+		clickButton(By.xpath("//button[@type='submit']"));
+	}
+	
 	public String getAlertSuccess() {
 		return getTextField(By.xpath("//div[@class='alert alert-success']"));
 	} 

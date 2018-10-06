@@ -1,15 +1,22 @@
 package br.felipewisniewski.core;
 
-import static br.felipewisniewski.core.DriverFactory.getDriver;
+import static br.felipewisniewski.core.Driver.getDriver;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageBase {
+	/* Wait */
+	public void waitForPresenceElement(By by, int seconds) {
+		WebDriverWait wait = new WebDriverWait(getDriver(), seconds);
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+	}
 		
-	/** Write **/
+	/* Write */
 	public void writeText(By by, String text) {
 		getDriver().findElement(by).clear();
 		getDriver().findElement(by).sendKeys(text);
@@ -19,7 +26,7 @@ public class PageBase {
 		writeText(By.id(textAreaId), text);
 	}
 	
-	/** Button **/
+	/* Button */
 	public void clickButton(By by) {
 		getDriver().findElement(by).click();
 	}
@@ -28,7 +35,7 @@ public class PageBase {
 		clickButton(By.id(buttonId));
 	}
 	
-	/** RadioButton **/
+	/* RadioButton */
 	public void clickRadioButton(By by) {
 		getDriver().findElement(by).click();
 	}
@@ -37,12 +44,12 @@ public class PageBase {
 		clickRadioButton(By.id(radioId));
 	}
 	
-	/** Link **/
+	/* Link */
 	public void clickLink(String textLink) {
 		getDriver().findElement(By.linkText(textLink)).click();
 	}
 	
-	/** Get Text **/
+	/* Get Text */
 	public String getTextField(By by) {
 		return getDriver().findElement(by).getText();
 	}
@@ -51,7 +58,7 @@ public class PageBase {
 		return getTextField(By.id(textFieldId));
 	}
 	
-	/** Table **/
+	/* Table */
 	public void clickTableSpanDelete(String columnName, String value, String columnAction, String tableId) {
 		WebElement cell = getCell(columnName, value, columnAction,tableId);
 		cell.findElement(By.xpath(".//span[@class='glyphicon glyphicon-remove-circle']")).click();
@@ -90,13 +97,14 @@ public class PageBase {
 		return index;		
 	}
 	
-	/** Drop-down **/
+	/* Drop-down */
 	public void selectDropDownList(String dropDownId, String optionValue) {
-		WebElement options = getDriver().findElement(By.id(dropDownId));
-		options.findElement(By.xpath("./option[@value='"+ optionValue +"']")).click();
+		WebElement select = getDriver().findElement(By.id(dropDownId));
+		List<WebElement> options = select.findElements(By.xpath("./option"));
+		for(int i = 0; i < options.size(); i++) {
+			if(options.get(i).getText().equals(optionValue)) {
+				options.get(i).click();
+			}
+		}
 	}
-	
-	
-	
-	
 }

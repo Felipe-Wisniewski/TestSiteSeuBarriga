@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import br.felipewisniewski.core.TestBase;
-import br.felipewisniewski.core.TestMass;
+import br.felipewisniewski.core.Mass;
 import br.felipewisniewski.pages.PageCreateMovement;
 import br.felipewisniewski.pages.PageMenu;
 
@@ -16,31 +16,33 @@ public class TestCreateMovement extends TestBase {
 	@Test
 	public void testCreateMovementRevenue() {
 		menu.openCreateMovement();
-		move.selectTypeMovement("REC");  //REC or DESP
-		move.setDateMovement(TestMass.getCurrentDate());
-		move.setDatePayment("");
-		move.setDescriptionMovement("");
-		move.setInterested("");
-		move.setValueMovement("");
-		move.selectAccountMovement("");
-		move.selectSituationMovement("");
+		
+		move.selectTypeMovement(Mass.movTypeRevenue);
+		move.setDateMovement(Mass.getCurrentDate());
+		move.setDatePayment(Mass.getFutureDate());
+		move.setDescriptionMovement(Mass.movDescription);
+		move.setInterested(Mass.movInterested);
+		move.setValueMovement(Mass.movValue);
+		move.selectAccountMovement(Mass.accountName1);
+		move.selectSituationMovement(Mass.movPaid);
+		move.saveButton();
 		
 		Assert.assertEquals("Movimentação adicionada com sucesso!", move.getAlertSuccess());
-		
-		System.out.println(TestMass.getCurrentMonth());
 	}
 	
 	@Test
 	public void testCreateMovementExpense() {
 		menu.openCreateMovement();
-		move.selectTypeMovement("DESP");  //REC or DESP
-		move.setDateMovement(TestMass.getCurrentDate());
-		move.setDatePayment("");
-		move.setDescriptionMovement("");
-		move.setInterested("");
-		move.setValueMovement("");
-		move.selectAccountMovement("");
-		move.selectSituationMovement("");
+		
+		move.selectTypeMovement(Mass.movTypeExpense);
+		move.setDateMovement(Mass.getCurrentDate());
+		move.setDatePayment(Mass.getFutureDate());
+		move.setDescriptionMovement(Mass.movDescription);
+		move.setInterested(Mass.movInterested);
+		move.setValueMovement(Mass.movValue);
+		move.selectAccountMovement(Mass.accountName1);
+		move.selectSituationMovement(Mass.movPendent);
+		move.saveButton();
 		
 		Assert.assertEquals("Movimentação adicionada com sucesso!", move.getAlertSuccess());
 	}

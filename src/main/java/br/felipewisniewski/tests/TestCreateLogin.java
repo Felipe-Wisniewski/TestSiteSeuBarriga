@@ -1,7 +1,7 @@
 package br.felipewisniewski.tests;
 
-import static br.felipewisniewski.core.DriverFactory.getDriver;
-import static br.felipewisniewski.core.DriverFactory.killDriver;
+import static br.felipewisniewski.core.Driver.getDriver;
+import static br.felipewisniewski.core.Driver.killDriver;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 
+import br.felipewisniewski.core.Mass;
 import br.felipewisniewski.pages.PageCreateLogin;
 
 public class TestCreateLogin {
@@ -29,9 +30,9 @@ public class TestCreateLogin {
 	@Test
 	public void testCreateNewLogin() {
 		newUser.clickNewUserButton();
-		newUser.setName("James Gosling");
-		newUser.setEmail("james_gosling@sum.com");
-		newUser.setPassword("1234");
+		newUser.setName(Mass.userName);
+		newUser.setEmail(Mass.userEmail);
+		newUser.setPassword(Mass.userPassword);
 		newUser.clickRegisterButton();
 		
 		Assert.assertEquals("Usuário inserido com sucesso", newUser.getConfirmAlert());		

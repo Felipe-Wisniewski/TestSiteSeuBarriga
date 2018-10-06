@@ -23,4 +23,8 @@ public class PageMenu extends PageBase {
 	public void openSummaryMonthly() {
 		clickLink("Resumo Mensal");
 	}	
+	
+	public void logout() {
+		clickLink("Sair");
+	}	
 }
